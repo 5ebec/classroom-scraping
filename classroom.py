@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 # 前期:1 後期:2
 url = "http://www.z.k.kyoto-u.ac.jp/zenkyo/syllabus?utf8=%E2%9C%93&condition%5Bcondition.semester%5D=" + \
-"2" + \
+"1" + \
 "&condition%5Bcondition.targetStudent%5D=&condition%5Bcondition.courseTitle%5D=&condition%5Bcondition.teacherName=&condition%5Bcondition.oldFamilies%5D%5B1%5D=true&condition%5Bcondition.oldFamilies%5D%5B2%5D=true&condition%5Bcondition.oldFamilies%5D%5B3%5D=true&x=38&y=17"
 response1 = requests.get(url)
 print(response1.status_code == 200)
@@ -27,3 +27,4 @@ for i in range(1,int(int(totalCount[0].text)/10)+2):
         print(table[(i-1)*10+k])
 df = pd.DataFrame(table,columns=['時限', '教室', '回生'])
 df.to_csv("classroom.sjis.csv", encoding="shift_jis")
+df.to_csv("classroom.csv", encoding="utf-8")
